@@ -4,7 +4,7 @@ deployment:
   tasks:
     # Set the deployment path to your public web directory.
     # IMPORTANT: Replace 'yourcpanelusername' with the actual username from the image: zz5nv4d45vsm
-    - export DEPLOYPATH=/home/zz5nv4d45vsm/public_html/
+    - export DEPLOYPATH=/home/bzjizj6qudjk/public_html/
 
     # Use rsync to copy files from the repository to the deployment path.
     #
