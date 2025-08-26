@@ -2998,7 +2998,7 @@ section,
   width: 600px;
   height: 600px;
   border-radius: 300px;
-  border: 100px solid rgba(42, 32, 239, 0.197);
+  border: 100px solid rgba(0, 213, 255, 0.5);
   background: transparent;
   
   /* Positioning for top-right */
@@ -3016,7 +3016,7 @@ section,
   z-index: 2; /* Between image and text */
   width: 150px;
   height: 1200px;
-  background: rgba(42, 32, 239, 0.197);
+  background: rgba(0, 213, 255, 0.5);
   transform: rotate(-30deg);
 
   /* Positioning */
