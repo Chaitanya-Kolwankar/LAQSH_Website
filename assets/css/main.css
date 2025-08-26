@@ -71,7 +71,17 @@
   /*--surface-color: #252525;
   --contrast-color: #ffffff; */
 }
-
+@media (max-width: 600px) {
+  /* Your phone-specific styles go here */
+  
+  .dark-background-footer {
+  --background-color: rgb(255, 255, 255);
+  --default-color: #111111;
+  --heading-color: #000000;
+  /*--surface-color: #252525;
+  --contrast-color: #ffffff; */
+}
+}
 /* Smooth scroll */
 :root {
   scroll-behavior: smooth;
@@ -489,6 +499,12 @@ h6 {
   background: color-mix(in srgb, var(--background-color), transparent 98%);
   position: absolute;
   inset: 0;
+}
+
+@media (max-width: 600px) {
+  .footer:before {
+    background: color-mix(in srgb, var(--background-color), transparent 10%);
+  }
 }
 
 .footer .footer-top {
@@ -2931,3 +2947,97 @@ section,
 .text-default {
   color: color-mix(in srgb, var(--default-color), transparent 30%);
 }
+
+/* =================================================================== */
+/* HERO SECTION - COMPLETE CSS                     */
+/* =================================================================== */
+
+/* 1. Main container for the hero section */
+#hero {
+  position: relative; /* This is the anchor for all positioned elements inside */
+  width: 100%;
+  min-height: 100vh; /* Make section at least as tall as the screen */
+  overflow: hidden; /* IMPORTANT: Keeps animations contained */
+}
+
+/* 2. Carousel container, positioned as a background layer */
+#hero-carousel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; /* Places it at the very back */
+}
+
+/* 3. Ensure the carousel item and image fill the container */
+#hero-carousel .carousel-item {
+  width: 100%;
+  height: 100%;
+  position: relative; /* Anchor for the animations */
+  overflow: hidden; /* Also keeps animations contained here */
+}
+
+#hero-carousel .carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Prevents image from stretching */
+}
+
+/* 4. The text overlay, on the top layer */
+#hero .info {
+  position: relative;
+  z-index: 3; /* On top of the image (1) and animations (2) */
+}
+
+/* 5. Circular animation ::before pseudo-element */
+#hero .carousel-item::before {
+  content: "";
+  position: absolute;
+  z-index: 2; /* Between image and text */
+  width: 600px;
+  height: 600px;
+  border-radius: 300px;
+  border: 100px solid rgba(42, 32, 239, 0.197);
+  background: transparent;
+  
+  /* Positioning for top-right */
+  top: -300px;
+  right: -300px;
+  left: auto; /* Override any conflicting 'left: 0' styles */
+
+  animation: RotateMoveCircle 10s linear infinite;
+}
+
+/* 6. Diagonal stripe animation ::after pseudo-element */
+#hero .carousel-item::after {
+  content: "";
+  position: absolute;
+  z-index: 2; /* Between image and text */
+  width: 150px;
+  height: 1200px;
+  background: rgba(42, 32, 239, 0.197);
+  transform: rotate(-30deg);
+
+  /* Positioning */
+  top: -150px;
+  left: 70px;
+
+  animation: RotateMoveRight 5s linear infinite;
+}
+
+/* 7. Keyframes for the animations */
+@keyframes RotateMoveCircle {
+  0% { top: -400px; right: -300px; }
+  25% { top: -300px; right: -250px; }
+  50% { top: -300px; right: -200px; }
+  75% { top: -200px; right: -250px; }
+  100% { top: -400px; right: -300px; }
+}
+
+@keyframes RotateMoveRight {
+  0% { left: 0px; }
+  50% { left: 70px; }
+  100% { left: 0px; }
+}
+
