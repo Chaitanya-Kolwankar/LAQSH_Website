@@ -1,0 +1,31 @@
+# .cpanel.yml (place this file in the root of your Git repository)
+
+deployment:
+  tasks:
+    # Set the deployment path to your public web directory.
+    # IMPORTANT: Replace 'yourcpanelusername' with the actual username from the image: zz5nv4d45vsm
+    - export DEPLOYPATH=/home/zz5nv4d45vsm/public_html/
+
+    # Use rsync to copy files from the repository to the deployment path.
+    #
+    # Explanation of rsync options:
+    # -a: archive mode (recursively copies, preserves permissions, ownership, timestamps, symlinks)
+    # -v: verbose (shows what's being copied)
+    # --delete: deletes extraneous files from the destination directory (files that are not in the source)
+    # --exclude='.gitattributes': This is the key part - tells rsync to skip this file.
+    # --exclude='.git/': Excludes the entire .git directory, which is also unnecessary on the web server.
+    # ./ : The source directory (the root of your Git repo in cPanel's build environment)
+    # $DEPLOYPATH: The destination directory (your public_html)
+    - /usr/bin/rsync -av --delete --exclude='.gitattributes' --exclude='.git/' ./ $DEPLOYPATH
+
+# IMPORTANT NOTES:
+# 1. Replaced 'yourcpanelusername' with 'zz5nv4d45vsm' based on the provided image.
+# 2. This rsync command copies everything from your repository's root (where .cpanel.yml is)
+#    into your public_html, *except* for .gitattributes and the .git folder.
+# 3. The '--delete' flag is powerful: it will remove files from public_html
+#    if they are no longer present in your Git repository. Be careful with this,
+#    especially if you have generated files in public_html that are not in Git.
+#    If you want to keep files in public_html that are NOT in your Git repo,
+#    remove the '--delete' flag.
+# 4. If your website's files are in a subdirectory of your Git repo (e.g., in a 'src' folder),
+#    change './' to 'src/' in the rsync command. Example: /usr/bin/rsync -av --delete --exclude='.gitattributes' --exclude='.git/' src/ $DEPLOYPATH
