@@ -1153,6 +1153,17 @@ section,
   transition: 0.3s;
 }
 
+.services .service-item h1 {
+  color: color-mix(in srgb, var(--heading-color), transparent 20%);
+  font-weight: 700;
+  margin: 0 0 20px 0;
+  padding-bottom: 8px;
+  position: relative;
+  display: inline-block;
+  border-bottom: 4px solid color-mix(in srgb, var(--heading-color), transparent 90%);
+  transition: 0.3s;
+}
+
 .services .service-item p {
   line-height: 24px;
   font-size: 14px;
@@ -1175,6 +1186,11 @@ section,
 }
 
 .services .service-item:hover h3 {
+  border-color: var(--accent-color);
+  color: var(--heading-color);
+}
+
+.services .service-item:hover h1 {
   border-color: var(--accent-color);
   color: var(--heading-color);
 }
